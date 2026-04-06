@@ -3,199 +3,749 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kamran's Homepage</title>
+  <title>Md Kamran Ashraf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --blue-500: #3b82f6;
+      --blue-600: #2563eb;
+      --indigo-500: #6366f1;
+      --indigo-600: #4f46e5;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --gray-900: #0f172a;
+      --white: #ffffff;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --radius: 16px;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f0f4f8;
-      color: #2d3748;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--gray-50);
+      color: var(--gray-700);
       line-height: 1.7;
     }
 
-    header {
-      background: linear-gradient(135deg, #3b82f6, #6366f1);
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: box-shadow 0.3s;
     }
 
-    header h1 {
-      font-size: 2.8rem;
-      margin-bottom: 12px;
+    nav.scrolled {
+      box-shadow: var(--shadow-md);
+    }
+
+    nav .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+    }
+
+    nav .logo {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      text-decoration: none;
       letter-spacing: -0.5px;
     }
 
-    header p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
-      opacity: 0.9;
+    nav .logo span {
+      background: linear-gradient(135deg, var(--blue-500), var(--indigo-500));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
+    nav .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+    }
+
+    nav .nav-links a {
+      color: var(--gray-600);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    nav .nav-links a:hover {
+      color: var(--blue-600);
+      background: var(--gray-100);
+    }
+
+    /* ── Hero Header ── */
+    .hero {
+      background: linear-gradient(135deg, var(--gray-900) 0%, #1a1a40 50%, var(--indigo-600) 100%);
+      color: var(--white);
+      padding: 140px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 70%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .hero .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-500), var(--indigo-500));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--white);
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+      line-height: 1.15;
+    }
+
+    .hero .tagline {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .hero .location {
+      font-size: 0.9rem;
+      opacity: 0.55;
+      font-weight: 400;
+    }
+
+    .hero .hero-cta {
+      margin-top: 28px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero .hero-cta a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 10px;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+
+    .hero .hero-cta a:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero .btn-primary {
+      background: var(--white);
+      color: var(--gray-900);
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero .btn-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ── Main ── */
     main {
-      max-width: 760px;
-      margin: 40px auto;
-      padding: 0 20px;
+      max-width: 960px;
+      margin: -40px auto 0;
+      padding: 0 24px 60px;
       display: flex;
       flex-direction: column;
       gap: 32px;
+      position: relative;
+      z-index: 2;
     }
 
     section {
-      background: white;
-      border-radius: 12px;
-      padding: 32px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
     }
 
     section h2 {
-      font-size: 1.4rem;
-      color: #3b82f6;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #e2e8f0;
-    }
-
-    section p {
-      color: #4a5568;
-      font-size: 1rem;
-    }
-
-    ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    ul li {
-      padding: 10px 16px;
-      background: #f0f4f8;
-      border-radius: 8px;
-      color: #4a5568;
-      font-size: 0.97rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    ul li::before {
-      content: '•';
-      color: #6366f1;
-      font-size: 1.3rem;
-      line-height: 1;
+    section h2 .icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .icon-blue {
+      background: #dbeafe;
+      color: var(--blue-600);
+    }
+
+    .icon-indigo {
+      background: #e0e7ff;
+      color: var(--indigo-600);
+    }
+
+    .icon-green {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    .icon-amber {
+      background: #fef3c7;
+      color: #d97706;
+    }
+
+    .icon-rose {
+      background: #ffe4e6;
+      color: #e11d48;
+    }
+
+    section p {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    /* ── Stats Row ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .stat-box {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .stat-box:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-box .number {
+      font-size: 1.65rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--blue-500), var(--indigo-500));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-box .label {
+      font-size: 0.78rem;
+      color: var(--gray-500);
+      margin-top: 4px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Two Column Layout ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    /* ── Experience / Education Items ── */
+    .experience-item {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--gray-100);
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-500), var(--indigo-500));
+    }
+
+    .experience-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .experience-item h3 {
+      font-size: 1rem;
+      color: var(--gray-800);
+      font-weight: 700;
+    }
+
+    .experience-item .company {
+      color: var(--blue-600);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .experience-item .meta {
+      color: var(--gray-400);
+      font-size: 0.82rem;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style: none;
+    }
+
+    .skills-grid li {
+      padding: 8px 16px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 100px;
+      color: var(--gray-700);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .skills-grid li::before {
+      display: none;
+    }
+
+    .skills-grid li:hover {
+      background: #eef2ff;
+      border-color: #c7d2fe;
+      color: var(--indigo-600);
+    }
+
+    /* ── Contact ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .contact-info p {
+      margin-bottom: 16px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gray-700);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 12px 16px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      transition: all 0.15s;
+      margin-bottom: 10px;
+    }
+
+    .contact-link:hover {
+      border-color: var(--blue-500);
+      background: #eff6ff;
+      color: var(--blue-600);
+    }
+
+    .contact-link .link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
     }
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
     form input,
     form textarea {
       width: 100%;
-      padding: 12px 14px;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 8px;
-      font-size: 0.97rem;
+      padding: 12px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 10px;
+      font-size: 0.9rem;
       font-family: inherit;
-      color: #2d3748;
-      background: #f8fafc;
-      transition: border-color 0.2s;
+      color: var(--gray-800);
+      background: var(--gray-50);
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
       outline: none;
     }
 
     form input:focus,
     form textarea:focus {
-      border-color: #3b82f6;
-      background: white;
+      border-color: var(--blue-500);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
     }
 
     form textarea {
       resize: vertical;
-      min-height: 120px;
+      min-height: 100px;
     }
 
     form button {
       align-self: flex-start;
       padding: 12px 28px;
-      background: linear-gradient(135deg, #3b82f6, #6366f1);
-      color: white;
+      background: linear-gradient(135deg, var(--blue-500), var(--indigo-500));
+      color: var(--white);
       border: none;
-      border-radius: 8px;
-      font-size: 1rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
-      transition: opacity 0.2s, transform 0.1s;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
     }
 
     form button:hover {
-      opacity: 0.9;
+      opacity: 0.92;
       transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
     }
 
     form button:active {
       transform: translateY(0);
     }
 
+    /* ── Footer ── */
     footer {
+      background: var(--gray-900);
+      color: var(--gray-400);
+      padding: 48px 24px;
+    }
+
+    .footer-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.3px;
+    }
+
+    .footer-brand span {
+      opacity: 0.4;
+      font-weight: 400;
+      font-size: 0.85rem;
+      margin-left: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      max-width: 960px;
+      margin: 24px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       text-align: center;
-      padding: 24px;
-      color: #a0aec0;
-      font-size: 0.88rem;
+      font-size: 0.8rem;
+      color: var(--gray-500);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav .nav-links {
+        gap: 2px;
+      }
+
+      nav .nav-links a {
+        padding: 8px 10px;
+        font-size: 0.82rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Hello, I'm Kamran</h1>
-    <p>Software enthusiast, lifelong learner, and problem solver. Welcome to my corner of the web.</p>
-  </header>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo"><span>K</span>amran</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="avatar">MK</div>
+      <h1>Md Kamran Ashraf</h1>
+      <p class="tagline">Technology Leader at ServiceNow &middot; MBA, IIM Bangalore</p>
+      <p class="location">Bengaluru, Karnataka, India</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+        <a href="https://www.linkedin.com/in/md-kamran-ashraf/" target="_blank" rel="noopener" class="btn-secondary">LinkedIn Profile</a>
+      </div>
+    </div>
+  </div>
 
   <main>
 
-    <section>
-      <h2>About Me</h2>
+    <!-- About -->
+    <section id="about">
+      <h2><span class="icon icon-blue">i</span> About Me</h2>
       <p>
-        I'm a passionate technologist who loves building things that matter. Whether it's crafting clean code,
-        exploring new ideas, or collaborating with others, I bring curiosity and dedication to everything I do.
-        I'm always on the lookout for the next challenge to take on and the next skill to learn.
+        I'm a technology professional currently working at ServiceNow, with an MBA from the Indian Institute of
+        Management Bangalore (IIM-B). I bring together business acumen and a deep interest in technology to drive
+        impactful outcomes. I'm passionate about AI, innovation, and the future of enterprise software. Outside of
+        work, I enjoy judging at tech events and engaging with the broader tech community.
       </p>
+      <div class="stats">
+        <div class="stat-box">
+          <div class="number">500+</div>
+          <div class="label">Connections</div>
+        </div>
+        <div class="stat-box">
+          <div class="number">4,000+</div>
+          <div class="label">Followers</div>
+        </div>
+        <div class="stat-box">
+          <div class="number">3.41</div>
+          <div class="label">IIM-B GPA / 4.0</div>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>My Interests</h2>
-      <ul>
-        <li>Software Development &amp; Building Web Apps</li>
-        <li>Reading about AI, Technology &amp; the Future</li>
-        <li>Hiking and Exploring the Outdoors</li>
-        <li>Photography and Visual Storytelling</li>
+    <!-- Experience & Education -->
+    <div class="two-col">
+      <section id="experience">
+        <h2><span class="icon icon-indigo">&#9733;</span> Experience</h2>
+        <div class="experience-item">
+          <h3>Technology Professional</h3>
+          <div class="company">ServiceNow</div>
+          <div class="meta">Hyderabad, India</div>
+        </div>
+      </section>
+
+      <section id="education">
+        <h2><span class="icon icon-green">&#9650;</span> Education</h2>
+        <div class="experience-item">
+          <h3>Master of Business Administration</h3>
+          <div class="company">IIM Bangalore</div>
+          <div class="meta">2017 &ndash; 2019 &middot; GPA: 3.41 / 4.00</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2><span class="icon icon-amber">&#9881;</span> Skills &amp; Interests</h2>
+      <ul class="skills-grid">
+        <li>Enterprise Technology</li>
+        <li>ServiceNow Platform</li>
+        <li>Artificial Intelligence</li>
+        <li>Emerging Tech</li>
+        <li>Hackathon Judge</li>
+        <li>Business Strategy</li>
+        <li>Management Consulting</li>
+        <li>English</li>
+        <li>Hindi</li>
+        <li>Urdu</li>
       </ul>
     </section>
 
-    <section>
-      <h2>Contact Me</h2>
-      <form>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message"></textarea>
-        <button type="submit">Send Message</button>
-      </form>
+    <!-- Contact -->
+    <section id="contact">
+      <h2><span class="icon icon-rose">&#9993;</span> Contact Me</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>I'm always open to interesting conversations and collaborations. Feel free to connect.</p>
+          <a class="contact-link" href="https://www.linkedin.com/in/md-kamran-ashraf/" target="_blank" rel="noopener">
+            <span class="link-icon">in</span>
+            LinkedIn Profile
+          </a>
+          <a class="contact-link" href="mailto:">
+            <span class="link-icon">@</span>
+            Send an Email
+          </a>
+        </div>
+        <form>
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
     </section>
 
   </main>
 
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2026 Kamran. All rights reserved.</p>
+    <div class="footer-inner">
+      <div class="footer-brand">Md Kamran Ashraf <span>&middot; Bengaluru, India</span></div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://www.linkedin.com/in/md-kamran-ashraf/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Md Kamran Ashraf. All rights reserved.
+    </div>
   </footer>
+
+  <script>
+    // Add shadow to navbar on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
 
 </body>
 </html>
